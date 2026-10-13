@@ -1,0 +1,320 @@
+/* ============================================================
+   反诈小课堂 — 沙盒场景（家中探索）样式
+   ============================================================ */
+
+.sb-body {
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sb-body nav {
+    flex-shrink: 0;
+}
+
+.sb-stage {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background:
+        radial-gradient(ellipse at 50% 45%, #f4f8f4 0%, #dfeadf 55%, #c9dbcb 100%);
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#sbCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: manipulation;
+}
+
+/* ── HUD：任务面板 ── */
+.sb-quest {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 268px;
+    zoom: var(--ui-scale, 1);
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, .08);
+    padding: 14px 16px;
+    font-size: 15px;
+    line-height: 1.45;
+}
+
+.sb-quest-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.sb-quest-item {
+    display: flex;
+    gap: 8px;
+    padding: 5px 0;
+    color: var(--text);
+}
+
+.sb-quest-item.done {
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.sb-quest-tips {
+    margin-top: 6px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+    color: var(--text-mid);
+    font-size: 14px;
+}
+
+.sb-quest .btn {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 16px;
+    min-height: 44px;
+    padding: 10px 14px;
+}
+
+/* ── HUD：底部提示 ── */
+.sb-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+    padding: 0 12px;
+}
+
+.sb-help {
+    background: rgba(31, 36, 48, .72);
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 16px;
+    border-radius: 99px;
+    text-align: center;
+    zoom: var(--ui-scale, 1);
+}
+
+.sb-prompt {
+    pointer-events: auto;
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: 700;
+    background: var(--blue);
+    color: #fff;
+    border: 3px solid #fff;
+    border-radius: 99px;
+    padding: 11px 26px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, .4);
+    animation: sbPop .2s ease both;
+    zoom: var(--ui-scale, 1);
+}
+
+.sb-prompt:hover {
+    background: var(--blue-dark);
+}
+
+.sb-prompt kbd {
+    font-family: inherit;
+    font-size: 14px;
+    background: rgba(255, 255, 255, .25);
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-left: 8px;
+}
+
+@keyframes sbPop {
+    from { opacity: 0; transform: translateY(8px) scale(.96); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ── 弹窗 ── */
+.sb-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(20, 24, 34, .55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: fadeSlideIn .2s ease both;
+}
+
+.sb-overlay[hidden] {
+    display: none;
+}
+
+.sb-modal {
+    width: 100%;
+    max-width: 620px;
+    max-width: min(620px, calc((100vw - 32px) / var(--ui-scale, 1)));
+    max-height: calc((100vh - 32px) / var(--ui-scale, 1));
+    zoom: var(--ui-scale, 1);
+    background: var(--white);
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+}
+
+.sb-modal-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 16px 12px 22px;
+    background: #eef1f6;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.sb-modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-mid);
+}
+
+.sb-modal-close {
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-mid);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 7px 16px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.sb-modal-close:hover {
+    border-color: var(--blue);
+    color: var(--blue-dark);
+}
+
+.sb-modal-body {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    flex: 1;
+}
+
+.sb-modal .call-header {
+    padding: 18px 20px;
+}
+
+.sb-modal .chat-area {
+    max-height: 32vh;
+}
+
+.sb-modal .summary-panel {
+    max-width: none;
+    margin: 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+    border-radius: 0;
+}
+
+/* ── 小贴士 / 提示对话框 ── */
+.sb-dialog {
+    padding: 24px 26px 26px;
+}
+
+.sb-dialog p {
+    font-size: 18px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.sb-dialog .sb-dialog-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 720px) {
+    .sb-quest {
+        width: auto;
+        right: 14px;
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    .sb-quest-item { padding: 2px 0; }
+    .sb-quest .sb-quest-tips { display: none; }
+    .sb-prompt { font-size: 17px; padding: 10px 20px; }
+    .sb-prompt kbd { display: none; }
+    .sb-help { font-size: 12px; }
+}
+
+/* ── 右上角：字号 / 地图大小 ── */
+.sb-tools {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.sb-tool-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 5px 8px 5px 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .07);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-mid);
+}
+
+.sb-tool-group button,
+.sb-modal-font button {
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    min-width: 42px;
+    height: 38px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--blue-dark);
+    cursor: pointer;
+}
+
+.sb-tool-group button:hover,
+.sb-modal-font button:hover {
+    background: var(--blue-pale);
+    border-color: var(--blue);
+}
+
+.sb-modal-font {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+}
+
+/* ── 作为首页背景：只留场景 ── */
+.sb-body.sb-bg { background: transparent; }
+.sb-bg nav, .sb-bg .sb-quest, .sb-bg .sb-tools, .sb-bg .sb-bottom, .sb-bg .sb-overlay { display: none !important; }
+.sb-bg .sb-stage { background: transparent; }

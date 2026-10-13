@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>第一课：短信里的"孙子" — 反诈小课堂</title>
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/case.css" />
+</head>
+<body>
+    <nav>
+        <a href="home.html" class="nav-logo" data-i18n="brand">🛡️ 反诈小课堂</a>
+        <div class="nav-right">
+            <a href="home.html" class="nav-back" data-i18n="navBack">← 返回首页</a>
+            <div class="lang-switch" id="langSwitch"></div>
+        </div>
+    </nav>
+
+    <div class="case-header">
+        <div class="eyebrow" data-i18n="c1Eyebrow">第一课 · 短信诈骗</div>
+        <h1 data-i18n="c1PageTitle">📱 短信里的"孙子"</h1>
+        <p data-i18n="c1PageDesc">一条来自陌生号码、说"出车祸急需转账"的短信，跟着情景做出你的选择。</p>
+    </div>
+
+    <div class="phone-frame">
+        <div class="phone-topbar" data-i18n="c1Topbar">💬 短信 · 未知号码</div>
+        <div class="chat-area" id="chatArea"></div>
+        <div class="choice-area" id="choiceArea"></div>
+        <div class="continue-bar" id="continueBar"></div>
+    </div>
+
+    <div class="summary-panel" id="summaryPanel" style="display:none;"></div>
+
+    <footer data-i18n="footer">
+        本课程仅用于防骗教育演示 · 遇到可疑情况请联系家人或当地警方 / 反诈骗机构
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/case1.js"></script>
+    <script>
+        if (!isPreSurveyDone()) {
+            window.location.href = 'survey-pre.html';
+        } else {
+            initI18n('langSwitch');
+            const engine = new ChatEngine(CASE1_SCRIPT[getLang()], {
+                chatAreaId: 'chatArea',
+                choiceAreaId: 'choiceArea',
+                continueBarId: 'continueBar',
+                summaryId: 'summaryPanel',
+                lessonId: 'case1'
+            });
+            engine.start();
+        }
+    </script>
+</body>
+</html>

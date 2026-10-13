@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>家中探索 — 反诈小课堂</title>
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/case.css" />
+    <link rel="stylesheet" href="css/sandbox.css" />
+</head>
+<body class="sb-body">
+    <nav>
+        <a href="home.html" class="nav-logo" data-i18n="brand">🛡️ 反诈小课堂</a>
+        <div class="nav-right">
+            <a href="home.html" class="nav-back" data-i18n="navBack">← 返回首页</a>
+            <div class="lang-switch" id="langSwitch"></div>
+        </div>
+    </nav>
+
+    <main class="sb-stage" id="sbStage">
+        <canvas id="sbCanvas"></canvas>
+        <aside class="sb-quest" id="sbQuest"></aside>
+        <div class="sb-tools" id="sbTools">
+            <div class="sb-tool-group"><span data-i18n="sbFontLabel">字号</span>
+                <button data-act="font-" data-i18n-title="sbFontDown" title="字体缩小">A−</button>
+                <button data-act="font+" data-i18n-title="sbFontUp" title="字体放大">A+</button></div>
+            <div class="sb-tool-group"><span data-i18n="sbMapLabel">地图</span>
+                <button data-act="zoom-" data-i18n-title="sbMapDown" title="地图缩小">−</button>
+                <button data-act="zoom+" data-i18n-title="sbMapUp" title="地图放大">+</button></div>
+        </div>
+        <div class="sb-bottom">
+            <button class="sb-prompt" id="sbPrompt" hidden></button>
+            <div class="sb-help" data-i18n="sbHelp">点击地面走动 · 方向键 / WASD 移动 · 空格键 或点击物品互动</div>
+        </div>
+    </main>
+
+    <div class="sb-overlay" id="sbOverlay" hidden>
+        <div class="sb-modal" role="dialog" aria-modal="true">
+            <div class="sb-modal-bar">
+                <span class="sb-modal-title" id="sbModalTitle"></span>
+                <span class="sb-modal-font">
+                    <button data-act="font-" title="A−">A−</button>
+                    <button data-act="font+" title="A+">A+</button>
+                </span>
+                <button class="sb-modal-close" id="sbModalClose" data-i18n="sbClose">✕ 先离开</button>
+            </div>
+            <div class="sb-modal-body" id="sbModalBody"></div>
+        </div>
+    </div>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/case1.js"></script>
+    <script src="js/case2.js"></script>
+    <script src="js/case3.js"></script>
+    <script src="js/sandbox.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+/* ============================================================
+   反诈小课堂 — 案例场景页共用样式
+   （短信 / App聊天 / 视频通话 三个案例共用此文件）
+   ============================================================ */
+
+.case-header {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 0;
+}
+
+.case-header .eyebrow {
+    margin-bottom: 6px;
+}
+
+.case-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.case-header p {
+    font-size: 16px;
+    color: var(--text-mid);
+}
+
+/* ── PHONE / APP FRAME ── */
+.phone-frame {
+    max-width: 620px;
+    margin: 1.5rem auto 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.phone-topbar {
+    background: #eef1f6;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-mid);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* ── VIDEO CALL HEADER (case 3) ── */
+.call-header {
+    background: #1a1f2b;
+    color: #fff;
+    padding: 28px 20px;
+    text-align: center;
+}
+
+.call-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #33394a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    margin: 0 auto 10px;
+}
+
+.call-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.call-status {
+    font-size: 14px;
+    color: #b8bfcf;
+    margin-top: 4px;
+}
+
+.call-video-box {
+    margin: 16px auto 0;
+    max-width: 320px;
+    background: #0e1117;
+    border-radius: 12px;
+    padding: 18px;
+    font-size: 14px;
+    color: #9aa2b5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* ── CHAT AREA ── */
+.chat-area {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 120px;
+    max-height: 48vh;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+}
+
+/* ── ENTRANCE ANIMATION (smooth, no page jump) ── */
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.bubble-row,
+.bubble-info,
+.choice-prompt,
+.choice-list,
+.feedback-panel,
+.feedback-actions,
+.continue-bar .btn,
+.summary-panel {
+    animation: fadeSlideIn .28s ease both;
+}
+
+.bubble-row {
+    display: flex;
+}
+
+.bubble-row.them {
+    justify-content: flex-start;
+}
+
+.bubble-row.me {
+    justify-content: flex-end;
+}
+
+.bubble {
+    max-width: 82%;
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.bubble-row.them .bubble {
+    background: #eef1f6;
+    color: var(--text);
+    border-bottom-left-radius: 4px;
+}
+
+.bubble-row.me .bubble {
+    background: var(--blue);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.bubble-info {
+    align-self: center;
+    max-width: 90%;
+    background: var(--amber-pale);
+    color: #5a3a05;
+    font-size: 15px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* ── CHOICES ── */
+.choice-area {
+    padding: 0 20px 20px;
+}
+
+.choice-area:empty {
+    padding: 0;
+}
+
+/* 反馈面板在 choice-area 内部时，左右间距已由容器提供 */
+.choice-area .feedback-panel {
+    margin: 0 0 14px;
+}
+
+.choice-area .feedback-actions {
+    margin: 0;
+}
+
+.choice-prompt {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-mid);
+    margin-bottom: 12px;
+}
+
+.choice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choice-btn {
+    text-align: left;
+    font-family: inherit;
+    font-size: 17px;
+    line-height: 1.5;
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+}
+
+.choice-btn:hover {
+    border-color: var(--blue);
+    background: var(--blue-pale);
+}
+
+.choice-btn:disabled {
+    cursor: default;
+    opacity: .6;
+}
+
+/* ── FEEDBACK PANEL ── */
+.feedback-panel {
+    margin: 0 20px 20px;
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.feedback-panel.correct {
+    background: var(--green-pale);
+    border: 1px solid rgba(22, 163, 74, .3);
+    color: #14532d;
+}
+
+.feedback-panel.wrong {
+    background: var(--red-pale);
+    border: 1px solid rgba(220, 38, 38, .3);
+    color: #7f1d1d;
+}
+
+.feedback-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 17px;
+}
+
+.feedback-actions {
+    margin: 0 20px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ── CONTINUE BAR ── */
+.continue-bar {
+    padding: 0 20px 22px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ── SUMMARY PANEL ── */
+.summary-panel {
+    max-width: 620px;
+    margin: 1.5rem auto 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+}
+
+.summary-panel h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.summary-score {
+    font-size: 17px;
+    color: var(--blue-dark);
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.summary-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.summary-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.6;
+}
+
+.summary-list li::before {
+    content: "✅";
+    flex-shrink: 0;
+}
+
+.summary-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
