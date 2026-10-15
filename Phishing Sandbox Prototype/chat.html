@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>消息 — TrueGuide 反诈小课堂</title>
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/case.css" />
+    <link rel="stylesheet" href="css/chat.css" />
+</head>
+<body class="chat-body">
+    <nav>
+        <a href="home.html" class="nav-logo" data-i18n="brand">🛡️ TrueGuide 反诈小课堂</a>
+        <div class="nav-right">
+            <span class="font-ctl">
+                <button data-act="font-" data-i18n-title="sbFontDown" title="字体缩小">A−</button>
+                <button data-act="font+" data-i18n-title="sbFontUp" title="字体放大">A+</button>
+            </span>
+            <a href="home.html" class="nav-back" data-i18n="navBack">← 返回首页</a>
+            <div class="lang-switch" id="langSwitch"></div>
+        </div>
+    </nav>
+
+    <main class="chat-app" id="chatApp">
+        <aside class="chat-list">
+            <div class="chat-list-head">
+                <span data-i18n="chatListTitle">消息</span>
+                <span class="chat-progress" id="chatProgress"></span>
+            </div>
+            <div class="chat-contacts" id="contactList"></div>
+        </aside>
+        <section class="chat-pane">
+            <div class="chat-pane-head">
+                <button class="chat-back" id="chatBack" data-i18n="chatBack">← 消息列表</button>
+                <div class="chat-pane-title" id="paneTitle"></div>
+            </div>
+            <div class="chat-pane-body" id="paneBody"></div>
+        </section>
+    </main>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/cases.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

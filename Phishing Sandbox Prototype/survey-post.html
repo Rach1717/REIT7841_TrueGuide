@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>结课小调查 — TrueGuide 反诈小课堂</title>
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/survey.css" />
+</head>
+<body>
+    <nav>
+        <a href="home.html" class="nav-logo" data-i18n="brand">🛡️ TrueGuide 反诈小课堂</a>
+        <div class="nav-right">
+            <a href="home.html" class="nav-back" data-i18n="surveyBackHome">← 返回首页</a>
+            <div class="lang-switch" id="langSwitch"></div>
+        </div>
+    </nav>
+
+    <div class="survey-wrap" id="surveyForm">
+        <div class="survey-header">
+            <div class="eyebrow" data-i18n="postSurveyTag">课程完成</div>
+            <h1 data-i18n="postSurveyTitle">结课小调查</h1>
+            <p data-i18n="postSurveyDesc">和入学前是同样的 6 道题，方便看看学完三节课后你的想法有没有变化。大约需要 2 分钟。</p>
+        </div>
+
+        <div class="survey-section-title" data-i18n="postSecC">C. 做决定时的想法（1–5 分）</div>
+        <div class="survey-section-desc" data-i18n="postSecCDesc">和入学前调查里同样的 12 道题，方便看看练习之后你的想法有没有变化。</div>
+        <div id="sectionC"></div>
+
+        <div class="survey-section-title" data-i18n="postSecExp">这次练习的感受（1–5 分）</div>
+        <div id="sectionExp"></div>
+
+        <div class="survey-section-title" data-i18n="postSecOpen">还有什么想说的？（可不填）</div>
+        <div id="sectionOpen"></div>
+
+        <div class="survey-submit-bar">
+            <button class="btn btn-primary" id="submitBtn" data-i18n="postSurveySubmitBtn">提交并查看我的报告 →</button>
+        </div>
+    </div>
+
+    <footer data-i18n="footer">
+        本课程仅用于防骗教育演示 · 遇到可疑情况请联系家人或当地警方 / 反诈骗机构
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/survey.js"></script>
+    <script>
+        initI18n('langSwitch');
+        renderSurveySection('sectionC', SURVEY_C);
+        renderSurveySection('sectionExp', SURVEY_POST_EXPERIENCE);
+        renderSurveySection('sectionOpen', SURVEY_POST_OPEN);
+
+        document.getElementById('submitBtn').addEventListener('click', () => {
+            const formEl = document.getElementById('surveyForm');
+            const answers = collectSurveyAnswers(formEl);
+            savePostSurvey(answers);
+            window.location.href = 'report.html';
+        });
+    </script>
+</body>
+</html>

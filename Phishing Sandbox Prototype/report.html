@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>我的学习报告 — TrueGuide 反诈小课堂</title>
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/report.css" />
+</head>
+<body>
+    <nav>
+        <a href="home.html" class="nav-logo" data-i18n="brand">🛡️ TrueGuide 反诈小课堂</a>
+        <div class="nav-right">
+            <a href="home.html" class="nav-back" data-i18n="surveyBackHome">← 返回首页</a>
+            <div class="lang-switch" id="langSwitch"></div>
+        </div>
+    </nav>
+
+    <div class="report-wrap" id="reportContent">
+        <div class="report-header">
+            <div class="eyebrow" data-i18n="reportTag">我的学习报告</div>
+            <h1 data-i18n="reportTitle">练习总结报告</h1>
+            <p data-i18n="reportDesc">这是你在练习中的表现，以及学习前后小调查的对比，仅供你自己参考。</p>
+        </div>
+
+        <div class="report-card" id="progressCard">
+            <div class="report-card-title" data-i18n="reportProgressTitle">学习前后，你进步了多少</div>
+            <p class="report-muted" data-i18n="reportProgressDesc">开课和结课时，你各判断了 12 条类似的消息（6 条骗局、6 条真消息）。</p>
+            <div id="progressBody"></div>
+        </div>
+
+        <div id="practiceSection">
+        <div class="report-card">
+            <div class="report-card-title" data-i18n="reportScoreTitle">练习成绩</div>
+            <div class="score-hero" id="scoreHero"></div>
+            <div class="stat-grid" id="scoreTiles"></div>
+            <div class="round-trend" id="roundTrend"></div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-card-title" data-i18n="reportCuesTitle">四种骗术信号，你识破了多少</div>
+            <p class="report-muted" data-i18n="reportCuesDesc">每一条骗局里都有几种信号。数字表示：含有这种信号的骗局，你第一次就识破了几条。</p>
+            <div id="cueBars"></div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-card-title" data-i18n="reportAdviceTitle">给你的建议</div>
+            <ul class="advice-list" id="adviceList"></ul>
+        </div>
+
+        <div class="report-card">
+            <div class="report-card-title" data-i18n="reportItemsTitle">每条消息回顾</div>
+            <p class="report-muted" data-i18n="reportItemsDesc">按你第一次的选择统计。</p>
+            <div id="itemList"></div>
+        </div>
+        </div>
+
+
+
+        <div class="report-thanks" data-i18n="reportThanks">感谢你完成本次学习和调查！</div>
+
+        <div class="report-actions">
+            <button class="btn btn-primary" id="againBtn" data-i18n="reportAgainBtn">🔁 过几天再练一轮</button>
+            <a class="btn btn-outline" href="home.html" data-i18n="reportGoHome">返回首页</a>
+        </div>
+        <div class="report-export">
+            <button class="link-btn" id="exportCsvBtn" data-i18n="reportExportCsvBtn">⬇ 导出数据表格式（CSV，研究用）</button>
+            <button class="link-btn" id="exportBtn" data-i18n="reportExportBtn">⬇ 导出完整练习记录（JSON）</button>
+        </div>
+    </div>
+
+    <div class="report-wrap report-empty" id="reportEmpty" style="display:none;">
+        <p data-i18n="reportNoData">还没有练习记录。先去家里或消息列表里看几条消息吧。</p>
+        <a class="btn btn-primary" href="home.html" data-i18n="reportGoHome">返回首页</a>
+    </div>
+
+    <footer data-i18n="footer">
+        本课程仅用于防骗教育演示 · 遇到可疑情况请联系家人或当地警方 / 反诈骗机构
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/cases.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/report.js"></script>
+    <script>
+        initI18n('langSwitch');
+        renderReport();
+    </script>
+</body>
+</html>

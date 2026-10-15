@@ -1,0 +1,461 @@
+/* ============================================================
+   反诈小课堂 — 对比报告样式
+   ============================================================ */
+
+.report-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 3rem;
+}
+
+.report-header {
+    margin-bottom: 1.5rem;
+}
+
+.report-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.report-header p {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.7;
+}
+
+.report-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 20px;
+}
+
+.report-card-title {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+/* ── CONSTRUCT METERS ── */
+.report-construct {
+    margin-bottom: 24px;
+}
+
+.report-construct:last-child {
+    margin-bottom: 0;
+}
+
+.report-construct-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.report-construct-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.report-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.report-bar-label {
+    width: 66px;
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--text-mid);
+}
+
+.report-bar-track {
+    flex: 1;
+    height: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.report-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--blue);
+    transition: width .6s ease;
+}
+
+.report-bar-fill.after {
+    background: var(--green);
+}
+
+.report-bar-value {
+    width: 32px;
+    flex-shrink: 0;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* ── LESSON SCORES ── */
+.report-lesson-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+}
+
+.report-lesson-row:last-child {
+    border-bottom: none;
+}
+
+.report-lesson-score {
+    font-weight: 700;
+    color: var(--blue-dark);
+}
+
+.report-overall-score {
+    margin-top: 10px;
+    padding-top: 12px;
+    border-top: 2px solid var(--border);
+    font-size: 16px;
+    font-weight: 700;
+    text-align: right;
+}
+
+.report-confident-types {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.7;
+}
+
+.report-thanks {
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-mid);
+    margin: 1.5rem 0;
+}
+
+.report-empty {
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+.report-empty p {
+    font-size: 16px;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+}
+
+/* ── 练习成绩：大数字 + 四个统计块 ── */
+.report-muted {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin: -4px 0 14px;
+}
+
+.score-hero {
+    text-align: center;
+    margin: 6px 0 18px;
+}
+
+.hero-num {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+.hero-num span {
+    font-size: 28px;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.hero-label {
+    font-size: 17px;
+    color: var(--text-mid);
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.stat-tile {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    background: var(--white);
+}
+
+/* 状态色只用在左边框上，数字和文字仍用正文颜色 */
+.stat-tile.good { border-left: 5px solid var(--green); }
+.stat-tile.bad { border-left: 5px solid var(--red); }
+.stat-tile.warn { border-left: 5px solid #d97706; }
+.stat-tile.neutral { border-left: 5px solid var(--border); }
+
+.stat-label {
+    font-size: 15px;
+    color: var(--text-mid);
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-hint {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.round-trend {
+    margin-top: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-align: center;
+}
+
+.round-trend:empty { display: none; }
+
+/* ── 四种信号的识破率 ── */
+.cue-bar-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 1.2fr) 2fr auto;
+    align-items: center;
+    gap: 6px 14px;
+    padding: 12px 10px;
+    border-radius: var(--radius-sm);
+}
+
+.cue-bar-row + .cue-bar-row { border-top: 1px solid var(--border); }
+
+.cue-bar-row.weak {
+    background: var(--amber-pale);
+    border-top-color: transparent;
+}
+
+.cue-bar-label { display: flex; flex-direction: column; }
+.cue-bar-name { font-size: 17px; font-weight: 700; }
+.cue-bar-desc { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+.cue-bar-row .report-bar-track { height: 14px; }
+.cue-bar-row .report-bar-fill { border-radius: 0 4px 4px 0; }
+
+.cue-bar-value {
+    font-size: 17px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    min-width: 3.5em;
+    text-align: right;
+}
+
+.cue-weak-tag {
+    grid-column: 1 / -1;
+    font-size: 14px;
+    font-weight: 700;
+    color: #7c2d12;
+}
+
+/* ── 建议 ── */
+.advice-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.advice-list li {
+    position: relative;
+    padding-left: 30px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.advice-list li::before {
+    content: "💡";
+    position: absolute;
+    left: 0;
+}
+
+/* ── 每条消息回顾 ── */
+.item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 4px;
+    border-top: 1px solid var(--border);
+}
+
+.item-row .contact-avatar {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e6ebf2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.item-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.item-name { font-size: 16px; font-weight: 700; }
+.item-detail { font-size: 14px; color: var(--text-mid); }
+
+.item-kind {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 99px;
+    padding: 1px 8px;
+    margin-left: 4px;
+    vertical-align: 2px;
+}
+
+.item-kind.scam { background: var(--red-pale); color: #7f1d1d; }
+.item-kind.safe { background: var(--green-pale); color: #14532d; }
+
+.item-status {
+    flex-shrink: 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-mid);
+    white-space: nowrap;
+}
+
+/* ── 底部按钮 ── */
+.report-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.report-export {
+    text-align: center;
+    margin-top: 14px;
+}
+
+.link-btn {
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text-muted);
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media (max-width: 560px) {
+    .cue-bar-row { grid-template-columns: 1fr auto; }
+    .cue-bar-row .report-bar-track { grid-column: 1 / -1; grid-row: 2; }
+    .hero-num { font-size: 46px; }
+    .item-status { white-space: normal; text-align: right; max-width: 6.5em; }
+}
+
+/* ── 开课 vs 结课测试 ── */
+.pair-row {
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+}
+
+.pair-label {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.pair-line {
+    display: grid;
+    grid-template-columns: 5.5em 1fr 4em;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.pair-tag {
+    font-size: 14px;
+    color: var(--text-mid);
+}
+
+.pair-val {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.cue-miss-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 16px 0 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+.cue-miss-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.cue-miss {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #f6f8f6;
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+}
+
+.cue-miss-val {
+    font-size: 18px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+.cue-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 99px;
+    padding: 3px 12px;
+    background: var(--white);
+    border: 1.5px solid #c7cede;
+    white-space: nowrap;
+}
+
+.cue-chip.cue-isolation {
+    border-color: #b45309;
+    background: var(--amber-pale);
+}
+
+.pair-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: -2px 0 8px;
+    line-height: 1.5;
+}

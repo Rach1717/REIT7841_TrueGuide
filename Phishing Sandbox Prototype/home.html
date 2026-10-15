@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrueGuide 反诈小课堂 — 生活中的诈骗，你能认出来吗？</title>
+    <link rel="stylesheet" href="css/game.css" />
+    <link rel="stylesheet" href="css/home.css" />
+</head>
+<body class="home-body">
+    <div class="home-bg" aria-hidden="true">
+        <iframe src="sandbox.html?bg=1" tabindex="-1" title=""></iframe>
+    </div>
+    <nav>
+        <a href="home.html" class="nav-logo" data-i18n="brand">🛡️ TrueGuide 反诈小课堂</a>
+        <div class="lang-switch" id="langSwitch"></div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-icon">🛡️</div>
+        <h1 data-i18n="heroTitle">生活中的诈骗，你能认出来吗？</h1>
+        <p data-i18n="heroDesc">这里有三个模拟真实场景的小案例。跟着情景一步步做选择，看看自己能不能识破骗局——答错了也没关系，我们会告诉你为什么。</p>
+    </section>
+
+    <div class="notice-box" data-i18n-html="noticeBox">
+        提醒：这只是一个防骗教学演示，里面的短信、聊天和视频通话都是虚构的。真实生活中，凡是遇到要求转账、汇款、提供验证码的消息，请务必先通过电话等方式和家人核实，或联系当地警方 / 反诈骗机构咨询。
+    </div>
+
+    <div class="state-banner-wrap" id="stateBanner"></div>
+
+    <div class="enter-wrap">
+        <div class="mode-label" data-i18n="homeModeLabel">选择体验方式</div>
+        <div class="mode-switch" role="tablist">
+            <button class="mode-btn" data-mode="sandbox" role="tab">
+                <span class="mode-name" data-i18n="homeModeSandbox">🏠 沙盒探索</span>
+                <span class="mode-sub" data-i18n="homeModeSandboxSub">在家里走动，点物品触发情景</span>
+            </button>
+            <button class="mode-btn" data-mode="classic" role="tab">
+                <span class="mode-name" data-i18n="homeModeClassic">💬 对话框模式</span>
+                <span class="mode-sub" data-i18n="homeModeClassicSub">一课一课，按顺序完成对话</span>
+            </button>
+        </div>
+        <p class="enter-desc" id="enterDesc"></p>
+        <a class="btn btn-primary enter-btn" id="enterBtn" href="sandbox.html">🏠 走进家里，开始探索</a>
+        <div class="mode-note" data-i18n="homeModeNote">两种模式的学习进度是共通的，可以随时切换。</div>
+    </div>
+
+    <h2 class="check-title" data-i18n="homeCuesTitle">你会练习识别的四种骗术信号</h2>
+    <div class="cue-grid" id="cueGrid"></div>
+
+    <h2 class="check-title" data-i18n="homeProgressTitle">学习进度</h2>
+    <div class="device-grid" id="deviceGrid"></div>
+
+    <footer data-i18n="footer">
+        本课程仅用于防骗教育演示 · 遇到可疑情况请联系家人或当地警方 / 反诈骗机构
+    </footer>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/cases.js"></script>
+    <script src="js/progress.js"></script>
+    <script>
+        initI18n('langSwitch');
+
+        function renderHomeState() {
+            const preDone = isPreSurveyDone();
+            const postDone = isPostSurveyDone();
+            const allDone = allLessonsDone();
+            const banner = document.getElementById('stateBanner');
+
+            const banner_ = (cls, title, desc, href, btn) => `
+                <div class="state-banner ${cls}">
+                    <div class="state-banner-title">${title}</div>
+                    <div class="state-banner-desc">${desc}</div>
+                    <a class="btn btn-primary" href="${href}">${btn}</a>
+                </div>`;
+            if (!preDone) {
+                banner.innerHTML = banner_('locked', t('homeLockedTitle'), t('homeLockedDesc'), 'survey-pre.html', t('homeLockedBtn'));
+            } else if (allDone && !postDone) {
+                banner.innerHTML = banner_('highlight', t('homePostPromptTitle'), t('homePostPromptDesc'), 'survey-post.html', t('homePostPromptBtn'));
+            } else if (postDone) {
+                banner.innerHTML = banner_('success', t('homeReportTitle'), t('homeReportDesc'), 'report.html', t('homeReportBtn'));
+            } else {
+                banner.innerHTML = '';
+            }
+
+            const mode = getMode();
+            const classic = mode === 'classic';
+            document.querySelectorAll('.mode-btn').forEach(b => {
+                const on = b.dataset.mode === mode;
+                b.classList.toggle('active', on);
+                b.setAttribute('aria-selected', on);
+            });
+
+            // 入口按钮：沙盒 → 进家里；对话框 → 聊天界面
+            const enterBtn = document.getElementById('enterBtn');
+            const started = anyLessonDone();
+            if (classic) {
+                enterBtn.href = 'chat.html';
+                enterBtn.textContent = started ? t('homeClassicNext') : t('homeClassicStart');
+            } else {
+                enterBtn.href = 'sandbox.html';
+                enterBtn.textContent = started ? t('homeContinueBtn') : t('homeEnterBtn');
+            }
+            if (nextRequiredPage()) enterBtn.href = nextRequiredPage();
+            document.getElementById('enterDesc').textContent = t(classic ? 'homeClassicDesc' : 'homeEnterDesc');
+
+            document.getElementById('cueGrid').innerHTML = CUE_IDS.map(id => `
+                <div class="cue-card">
+                    <div class="cue-card-icon">${CUES[id].icon}</div>
+                    <div class="cue-card-name">${escHtml(cueText(id).long)}</div>
+                    <div class="cue-card-desc">${escHtml(cueText(id).desc)}</div>
+                </div>`).join('');
+
+            document.getElementById('deviceGrid').innerHTML = Object.keys(DEVICES).map(dev => {
+                const ids = casesOnDevice(dev).map(c => c.id), done = doneCount(ids);
+                const channels = [...new Set(casesOnDevice(dev).map(c => CHANNELS[c.channel][getLang()]))].join(t('listSep'));
+                return `<div class="device-card${done === ids.length ? ' done' : ''}">
+                    <div class="case-icon">${DEVICES[dev].icon}</div>
+                    <div class="case-info">
+                        <div class="case-title">${DEVICES[dev][getLang()]}</div>
+                        <div class="case-desc">${escHtml(channels)}</div>
+                    </div>
+                    <div class="device-count">${done === ids.length ? '✅ ' : ''}${done} / ${ids.length}</div>
+                </div>`;
+            }).join('');
+        }
+
+        const MODE_KEY = 'fraudgame_mode';
+        function getMode() {
+            try { return localStorage.getItem(MODE_KEY) === 'classic' ? 'classic' : 'sandbox'; }
+            catch (e) { return 'sandbox'; }
+        }
+        document.querySelectorAll('.mode-btn').forEach(b => b.addEventListener('click', () => {
+            try { localStorage.setItem(MODE_KEY, b.dataset.mode); } catch (e) { /* ignore */ }
+            renderHomeState();
+        }));
+
+        renderHomeState();
+    </script>
+</body>
+</html>
